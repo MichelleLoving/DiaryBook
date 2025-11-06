@@ -1,0 +1,428 @@
+/* Night Sky Theme - Inspired by Midnight Blue Palette */
+
+:root {
+    --night-deep: #0a1128;
+    --night-sky: #1a2947;
+    --night-blue: #2e4366;
+    --night-accent: #4a6fa5;
+    --star-white: #e8f1f5;
+    --star-glow: #b8d4e8;
+    --moon-yellow: #f4e8c1;
+    --moon-glow: #ffd89b;
+    --gradient-dark: linear-gradient(135deg, #0a1128 0%, #1a2947 50%, #2e4366 100%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--night-deep);
+    background-image: 
+        radial-gradient(circle at 20% 30%, rgba(74, 111, 165, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(46, 67, 102, 0.2) 0%, transparent 50%);
+    color: var(--star-white);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Moon */
+body::before {
+    content: '';
+    position: fixed;
+    top: 8%;
+    right: 10%;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle at 35% 35%, var(--moon-yellow) 0%, var(--moon-glow) 100%);
+    border-radius: 50%;
+    box-shadow: 
+        0 0 60px rgba(244, 232, 193, 0.6),
+        0 0 100px rgba(255, 216, 155, 0.4),
+        inset -10px -10px 20px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    pointer-events: none;
+    animation: moonGlow 4s ease-in-out infinite;
+}
+
+/* Moon craters */
+body::after {
+    content: '';
+    position: fixed;
+    top: 10%;
+    right: 11.5%;
+    width: 15px;
+    height: 15px;
+    background: rgba(0, 0, 0, 0.08);
+    border-radius: 50%;
+    box-shadow: 
+        20px 25px 0 5px rgba(0, 0, 0, 0.06),
+        35px 10px 0 3px rgba(0, 0, 0, 0.05),
+        15px 35px 0 4px rgba(0, 0, 0, 0.07);
+    z-index: 2;
+    pointer-events: none;
+}
+
+@keyframes moonGlow {
+    0%, 100% { 
+        box-shadow: 
+            0 0 60px rgba(244, 232, 193, 0.6),
+            0 0 100px rgba(255, 216, 155, 0.4),
+            inset -10px -10px 20px rgba(0, 0, 0, 0.1);
+    }
+    50% { 
+        box-shadow: 
+            0 0 80px rgba(244, 232, 193, 0.8),
+            0 0 120px rgba(255, 216, 155, 0.6),
+            inset -10px -10px 20px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* Stars Layer 1 - Big stars */
+.stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.stars::before {
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 
+        100px 100px 0 0 white,
+        300px 150px 0 0 white,
+        500px 80px 0 0 white,
+        700px 200px 0 0 white,
+        900px 120px 0 0 white,
+        1100px 180px 0 0 white,
+        1300px 90px 0 0 white,
+        1500px 160px 0 0 white,
+        200px 300px 0 0 white,
+        400px 280px 0 0 white,
+        600px 350px 0 0 white,
+        800px 320px 0 0 white,
+        1000px 380px 0 0 white,
+        1200px 340px 0 0 white,
+        1400px 390px 0 0 white,
+        150px 500px 0 0 white,
+        350px 480px 0 0 white,
+        550px 520px 0 0 white,
+        750px 490px 0 0 white,
+        950px 510px 0 0 white,
+        1150px 540px 0 0 white,
+        1350px 470px 0 0 white,
+        250px 700px 0 0 white,
+        450px 680px 0 0 white,
+        650px 720px 0 0 white,
+        850px 690px 0 0 white,
+        1050px 710px 0 0 white,
+        1250px 740px 0 0 white;
+    animation: twinkleBig 3s ease-in-out infinite;
+}
+
+/* Stars Layer 2 - Medium stars */
+.stars::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 
+        50px 50px 0 0 rgba(255, 255, 255, 0.8),
+        250px 100px 0 0 rgba(255, 255, 255, 0.8),
+        450px 130px 0 0 rgba(255, 255, 255, 0.8),
+        650px 170px 0 0 rgba(255, 255, 255, 0.8),
+        850px 140px 0 0 rgba(255, 255, 255, 0.8),
+        1050px 110px 0 0 rgba(255, 255, 255, 0.8),
+        1250px 190px 0 0 rgba(255, 255, 255, 0.8),
+        1450px 130px 0 0 rgba(255, 255, 255, 0.8),
+        100px 250px 0 0 rgba(255, 255, 255, 0.8),
+        300px 290px 0 0 rgba(255, 255, 255, 0.8),
+        500px 270px 0 0 rgba(255, 255, 255, 0.8),
+        700px 310px 0 0 rgba(255, 255, 255, 0.8),
+        900px 290px 0 0 rgba(255, 255, 255, 0.8),
+        1100px 330px 0 0 rgba(255, 255, 255, 0.8),
+        1300px 270px 0 0 rgba(255, 255, 255, 0.8),
+        120px 450px 0 0 rgba(255, 255, 255, 0.8),
+        320px 490px 0 0 rgba(255, 255, 255, 0.8),
+        520px 470px 0 0 rgba(255, 255, 255, 0.8),
+        720px 510px 0 0 rgba(255, 255, 255, 0.8),
+        920px 490px 0 0 rgba(255, 255, 255, 0.8),
+        1120px 530px 0 0 rgba(255, 255, 255, 0.8),
+        1320px 470px 0 0 rgba(255, 255, 255, 0.8),
+        180px 650px 0 0 rgba(255, 255, 255, 0.8),
+        380px 690px 0 0 rgba(255, 255, 255, 0.8),
+        580px 670px 0 0 rgba(255, 255, 255, 0.8),
+        780px 710px 0 0 rgba(255, 255, 255, 0.8),
+        980px 690px 0 0 rgba(255, 255, 255, 0.8),
+        1180px 730px 0 0 rgba(255, 255, 255, 0.8);
+    animation: twinkleMedium 4s ease-in-out infinite;
+}
+
+@keyframes twinkleBig {
+    0%, 100% { 
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 0.3;
+        transform: scale(0.8);
+    }
+}
+
+@keyframes twinkleMedium {
+    0%, 100% { 
+        opacity: 0.8;
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 0.2;
+        transform: scale(0.7);
+    }
+}
+
+/* Small stars background */
+.stars-small {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(1px 1px at 20% 10%, white, transparent),
+        radial-gradient(1px 1px at 40% 20%, white, transparent),
+        radial-gradient(1px 1px at 60% 15%, white, transparent),
+        radial-gradient(1px 1px at 80% 25%, white, transparent),
+        radial-gradient(1px 1px at 15% 35%, white, transparent),
+        radial-gradient(1px 1px at 35% 45%, white, transparent),
+        radial-gradient(1px 1px at 55% 40%, white, transparent),
+        radial-gradient(1px 1px at 75% 50%, white, transparent),
+        radial-gradient(1px 1px at 90% 45%, white, transparent),
+        radial-gradient(1px 1px at 25% 60%, white, transparent),
+        radial-gradient(1px 1px at 45% 70%, white, transparent),
+        radial-gradient(1px 1px at 65% 65%, white, transparent),
+        radial-gradient(1px 1px at 85% 75%, white, transparent),
+        radial-gradient(1px 1px at 10% 80%, white, transparent),
+        radial-gradient(1px 1px at 30% 90%, white, transparent),
+        radial-gradient(1px 1px at 50% 85%, white, transparent),
+        radial-gradient(1px 1px at 70% 95%, white, transparent),
+        radial-gradient(1px 1px at 90% 90%, white, transparent);
+    background-size: 300% 300%;
+    opacity: 0.4;
+    animation: twinkleSmall 6s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes twinkleSmall {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.7; }
+}
+
+/* Container */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 10;
+}
+
+/* Headers */
+h1, h2, h3 {
+    color: var(--star-glow);
+    text-shadow: 0 0 20px rgba(184, 212, 232, 0.3);
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 10;
+}
+
+h2 {
+    font-size: 1.8rem;
+    border-bottom: 2px solid var(--night-accent);
+    padding-bottom: 0.5rem;
+}
+
+/* Links */
+a {
+    color: var(--night-accent);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 10;
+}
+
+a:hover {
+    color: var(--star-glow);
+    text-shadow: 0 0 10px rgba(184, 212, 232, 0.5);
+}
+
+/* Forms */
+form {
+    background: rgba(26, 41, 71, 0.7);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(74, 111, 165, 0.2);
+    position: relative;
+    z-index: 10;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="file"] {
+    width: 100%;
+    padding: 12px 16px;
+    margin: 8px 0 16px;
+    background: var(--night-deep);
+    border: 1px solid var(--night-accent);
+    border-radius: 8px;
+    color: var(--star-white);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="file"]:focus {
+    outline: none;
+    border-color: var(--star-glow);
+    box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.3);
+}
+
+/* Buttons */
+button,
+input[type="submit"] {
+    background: var(--gradient-dark);
+    color: var(--star-white);
+    padding: 12px 28px;
+    border: 1px solid var(--night-accent);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    z-index: 10;
+}
+
+button:hover,
+input[type="submit"]:hover {
+    background: var(--night-accent);
+    box-shadow: 0 0 20px rgba(74, 111, 165, 0.5);
+    transform: translateY(-2px);
+}
+
+button:active,
+input[type="submit"]:active {
+    transform: translateY(0);
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(26, 41, 71, 0.7);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 10;
+}
+
+th {
+    background: var(--night-blue);
+    color: var(--star-glow);
+    padding: 16px;
+    text-align: left;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+}
+
+td {
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(74, 111, 165, 0.2);
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tr:hover {
+    background: rgba(74, 111, 165, 0.1);
+}
+
+/* Messages */
+p {
+    margin: 1rem 0;
+    position: relative;
+    z-index: 10;
+}
+
+p[style*="color:green"],
+.success {
+    color: #6dd5a5 !important;
+    background: rgba(109, 213, 165, 0.1);
+    padding: 12px 16px;
+    border-radius: 8px;
+    border-left: 4px solid #6dd5a5;
+}
+
+p[style*="color:red"],
+.error {
+    color: #ff6b9d !important;
+    background: rgba(255, 107, 157, 0.1);
+    padding: 12px 16px;
+    border-radius: 8px;
+    border-left: 4px solid #ff6b9d;
+}
+
+/* HR */
+hr {
+    border: none;
+    height: 2px;
+    background: var(--gradient-dark);
+    margin: 2rem 0;
+    opacity: 0.5;
+    position: relative;
+    z-index: 10;
+}
+
+/* Responsive untuk mobile */
+@media (max-width: 768px) {
+    body::before {
+        width: 80px;
+        height: 80px;
+        top: 5%;
+        right: 5%;
+    }
+    
+    body::after {
+        top: 6%;
+        right: 6%;
+        width: 10px;
+        height: 10px;
+    }
+}
