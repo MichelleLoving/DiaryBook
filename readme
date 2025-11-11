@@ -1,0 +1,200 @@
+# 🌙 DiaryBook - Personal Diary Application
+
+## ✨ Fitur Baru yang Ditambahkan
+
+### 🎨 Design Improvements
+1. **Night Sky Theme** - Tema malam yang indah dengan animasi bintang
+2. **Glassmorphism Effect** - Efek kaca modern pada semua card dan form
+3. **Smooth Animations** - Animasi halus pada semua elemen
+4. **Responsive Design** - Tampilan optimal di semua ukuran layar
+5. **Gradient Buttons** - Tombol dengan gradient warna menarik
+6. **Hover Effects** - Efek interaktif saat cursor hover
+7. **Shooting Stars** - Bintang jatuh random setiap 7 detik
+
+### 🎵 BGM Music Player
+1. **Toggle Music** - Tombol on/off musik di pojok kanan atas
+2. **Persistent State** - Status musik tersimpan di localStorage
+3. **Auto Resume** - Musik otomatis continue di halaman lain
+4. **Visual Indicator** - Icon beranimasi saat musik playing
+
+---
+
+## 📋 Cara Instalasi
+
+### 1. Persiapan File Musik
+Download musik background (lofi/relaxing) dari situs bebas copyright:
+- **Pixabay Music**: https://pixabay.com/music/
+- **Bensound**: https://www.bensound.com/
+- **YouTube Audio Library**: https://www.youtube.com/audiolibrary
+
+Rekomendasi kata kunci pencarian:
+- "lofi beats"
+- "chill music"
+- "relaxing piano"
+- "ambient music"
+
+### 2. Struktur Folder
+Buat struktur folder seperti ini:
+```
+DiaryBook/
+├── config/
+│   └── connect.php
+├── css/
+│   └── style.css (file baru yang sudah diperbaiki)
+├── uploads/ (dibuat otomatis)
+├── assets/
+│   └── bg-music.mp3 (taruh file musik di sini)
+├── index.php (file baru)
+├── login.php
+├── register.php
+├── tambah.php (file baru)
+├── upload.php (file baru)
+├── delete_file.php
+└── logout.php
+```
+
+### 3. Buat Folder Assets
+```bash
+mkdir assets
+```
+
+Kemudian copy file musik yang sudah di-download ke folder `assets/` dengan nama `bg-music.mp3`
+
+### 4. Database
+Struktur database tetap sama seperti sebelumnya. Pastikan tabel `files` punya kolom:
+- `id` (INT, PRIMARY KEY, AUTO_INCREMENT)
+- `user_id` (INT)
+- `filename` (VARCHAR)
+- `uploaded_at` (TIMESTAMP, DEFAULT CURRENT_TIMESTAMP)
+- `title` (VARCHAR) - untuk judul catatan
+- `content` (TEXT) - untuk isi catatan
+
+---
+
+## 🎯 Fitur-Fitur Aplikasi
+
+### 1. Authentication
+- ✅ Register dengan username & password
+- ✅ Login dengan validasi password hash
+- ✅ Session management
+- ✅ Logout
+
+### 2. Diary Management
+- ✅ Tambah catatan dengan judul & isi
+- ✅ Upload foto untuk catatan (opsional)
+- ✅ Tampil semua catatan dalam bentuk card
+- ✅ Tampilan tanggal & waktu upload
+
+### 3. File Management
+- ✅ Upload file terpisah
+- ✅ Lihat daftar file dalam tabel
+- ✅ Hapus file
+- ✅ Download/view file
+
+### 4. UI/UX
+- ✅ Dark theme dengan night sky
+- ✅ Animated stars background
+- ✅ Shooting stars effect
+- ✅ Glassmorphism cards
+- ✅ Smooth hover animations
+- ✅ Responsive design
+
+### 5. BGM Music
+- ✅ Background music player
+- ✅ On/Off toggle button
+- ✅ Persistent music state
+- ✅ Auto-resume across pages
+- ✅ Visual playing indicator
+
+---
+
+## 🎨 Kustomisasi Warna
+
+Untuk mengubah warna tema, edit variabel CSS di `style.css`:
+
+```css
+:root {
+  --sky-dark: #0a0e27;        /* Background gelap */
+  --sky-blue: #1a1f3a;        /* Background terang */
+  --star-white: #e8f1ff;      /* Warna teks putih */
+  --star-glow: #6b9fff;       /* Warna glow biru */
+  --moon-yellow: #ffd93d;     /* Warna aksen kuning */
+  --accent-purple: #7c3aed;   /* Warna ungu */
+  --accent-pink: #ec4899;     /* Warna pink */
+}
+```
+
+---
+
+## 🎵 Mengganti Musik
+
+1. Download musik baru (format MP3)
+2. Replace file `assets/bg-music.mp3`
+3. Atau ubah path di setiap file PHP:
+```html
+<audio id="bgMusic" loop>
+    <source src="assets/NAMA-MUSIK-BARU.mp3" type="audio/mpeg">
+</audio>
+```
+
+---
+
+## 📱 Responsive Breakpoints
+
+- **Desktop**: > 768px (3 kolom card)
+- **Tablet**: 481px - 768px (2 kolom card)
+- **Mobile**: < 480px (1 kolom card)
+
+---
+
+## 🔧 Troubleshooting
+
+### Musik tidak bunyi?
+1. Pastikan file `assets/bg-music.mp3` ada
+2. Cek console browser untuk error
+3. Beberapa browser block autoplay - klik tombol music manual
+
+### Gambar tidak muncul?
+1. Pastikan folder `uploads/` ada dan writable
+2. Cek permission folder: `chmod 777 uploads/`
+3. Cek path gambar di database
+
+### Animasi lag?
+1. Reduce jumlah stars di CSS
+2. Disable shooting stars effect
+3. Simplify animations
+
+---
+
+## 🚀 Future Improvements
+
+Ide fitur tambahan yang bisa dikembangkan:
+- [ ] Edit & delete catatan
+- [ ] Search & filter catatan
+- [ ] Export to PDF
+- [ ] Share catatan
+- [ ] Multiple music choices
+- [ ] Dark/Light theme toggle
+- [ ] Tags & categories
+- [ ] Calendar view
+
+---
+
+## 📄 License
+
+Free to use for personal & educational purposes.
+
+---
+
+## 👨‍💻 Credits
+
+Design & Development: DiaryBook Team
+Inspired by: Modern web design trends & Night sky aesthetics
+
+---
+
+## 📞 Support
+
+Jika ada pertanyaan atau bug, silakan hubungi developer.
+
+**Happy Journaling! ✨📔**
