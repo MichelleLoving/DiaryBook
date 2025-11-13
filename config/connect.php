@@ -1,12 +1,18 @@
 <?php
+// Database configuration
 $host = 'localhost';
-$user = 'root';
-$pass = '';
 $dbname = 'diarybook';
+$username = 'root';
+$password = '';
 
-$conn = new mysqli($host, $user, $pass, $dbname);
+// Create connection
+$conn = new mysqli($host, $username, $password, $dbname);
 
+// Check connection
 if ($conn->connect_error) {
-    die("Koneksi gagal: " . $conn->connect_error);
+    die("Connection failed: " . $conn->connect_error);
 }
+
+// Set charset to UTF-8
+$conn->set_charset("utf8mb4");
 ?>

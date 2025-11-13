@@ -1,428 +1,826 @@
-/* Night Sky Theme - Inspired by Midnight Blue Palette */
+/* === Night Sky Theme === */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
-    --night-deep: #0a1128;
-    --night-sky: #1a2947;
-    --night-blue: #2e4366;
-    --night-accent: #4a6fa5;
-    --star-white: #e8f1f5;
-    --star-glow: #b8d4e8;
-    --moon-yellow: #f4e8c1;
-    --moon-glow: #ffd89b;
-    --gradient-dark: linear-gradient(135deg, #0a1128 0%, #1a2947 50%, #2e4366 100%);
+  --sky-dark: #0a0e27;
+  --sky-blue: #1a1f3a;
+  --star-white: #e8f1ff;
+  --star-glow: #6b9fff;
+  --moon-yellow: #ffd93d;
+  --text-light: #d4dcf1;
+  --accent-purple: #7c3aed;
+  --accent-pink: #ec4899;
+  --card-bg: rgba(30, 41, 71, 0.75);
+  --glass-border: rgba(139, 164, 255, 0.2);
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    background: var(--night-deep);
-    background-image: 
-        radial-gradient(circle at 20% 30%, rgba(74, 111, 165, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(46, 67, 102, 0.2) 0%, transparent 50%);
-    color: var(--star-white);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    min-height: 100vh;
-    position: relative;
-    overflow-x: hidden;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, var(--sky-dark) 0%, #0f1428 50%, var(--sky-blue) 100%);
+  color: var(--text-light);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
 }
 
-/* Moon */
-body::before {
-    content: '';
-    position: fixed;
-    top: 8%;
-    right: 10%;
-    width: 120px;
-    height: 120px;
-    background: radial-gradient(circle at 35% 35%, var(--moon-yellow) 0%, var(--moon-glow) 100%);
-    border-radius: 50%;
-    box-shadow: 
-        0 0 60px rgba(244, 232, 193, 0.6),
-        0 0 100px rgba(255, 216, 155, 0.4),
-        inset -10px -10px 20px rgba(0, 0, 0, 0.1);
-    z-index: 1;
-    pointer-events: none;
-    animation: moonGlow 4s ease-in-out infinite;
-}
-
-/* Moon craters */
-body::after {
-    content: '';
-    position: fixed;
-    top: 10%;
-    right: 11.5%;
-    width: 15px;
-    height: 15px;
-    background: rgba(0, 0, 0, 0.08);
-    border-radius: 50%;
-    box-shadow: 
-        20px 25px 0 5px rgba(0, 0, 0, 0.06),
-        35px 10px 0 3px rgba(0, 0, 0, 0.05),
-        15px 35px 0 4px rgba(0, 0, 0, 0.07);
-    z-index: 2;
-    pointer-events: none;
-}
-
-@keyframes moonGlow {
-    0%, 100% { 
-        box-shadow: 
-            0 0 60px rgba(244, 232, 193, 0.6),
-            0 0 100px rgba(255, 216, 155, 0.4),
-            inset -10px -10px 20px rgba(0, 0, 0, 0.1);
-    }
-    50% { 
-        box-shadow: 
-            0 0 80px rgba(244, 232, 193, 0.8),
-            0 0 120px rgba(255, 216, 155, 0.6),
-            inset -10px -10px 20px rgba(0, 0, 0, 0.1);
-    }
-}
-
-/* Stars Layer 1 - Big stars */
-.stars {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 0;
-}
-
-.stars::before {
-    content: '';
-    position: absolute;
-    width: 3px;
-    height: 3px;
-    background: white;
-    border-radius: 50%;
-    box-shadow: 
-        100px 100px 0 0 white,
-        300px 150px 0 0 white,
-        500px 80px 0 0 white,
-        700px 200px 0 0 white,
-        900px 120px 0 0 white,
-        1100px 180px 0 0 white,
-        1300px 90px 0 0 white,
-        1500px 160px 0 0 white,
-        200px 300px 0 0 white,
-        400px 280px 0 0 white,
-        600px 350px 0 0 white,
-        800px 320px 0 0 white,
-        1000px 380px 0 0 white,
-        1200px 340px 0 0 white,
-        1400px 390px 0 0 white,
-        150px 500px 0 0 white,
-        350px 480px 0 0 white,
-        550px 520px 0 0 white,
-        750px 490px 0 0 white,
-        950px 510px 0 0 white,
-        1150px 540px 0 0 white,
-        1350px 470px 0 0 white,
-        250px 700px 0 0 white,
-        450px 680px 0 0 white,
-        650px 720px 0 0 white,
-        850px 690px 0 0 white,
-        1050px 710px 0 0 white,
-        1250px 740px 0 0 white;
-    animation: twinkleBig 3s ease-in-out infinite;
-}
-
-/* Stars Layer 2 - Medium stars */
-.stars::after {
-    content: '';
-    position: absolute;
-    width: 2px;
-    height: 2px;
-    background: white;
-    border-radius: 50%;
-    box-shadow: 
-        50px 50px 0 0 rgba(255, 255, 255, 0.8),
-        250px 100px 0 0 rgba(255, 255, 255, 0.8),
-        450px 130px 0 0 rgba(255, 255, 255, 0.8),
-        650px 170px 0 0 rgba(255, 255, 255, 0.8),
-        850px 140px 0 0 rgba(255, 255, 255, 0.8),
-        1050px 110px 0 0 rgba(255, 255, 255, 0.8),
-        1250px 190px 0 0 rgba(255, 255, 255, 0.8),
-        1450px 130px 0 0 rgba(255, 255, 255, 0.8),
-        100px 250px 0 0 rgba(255, 255, 255, 0.8),
-        300px 290px 0 0 rgba(255, 255, 255, 0.8),
-        500px 270px 0 0 rgba(255, 255, 255, 0.8),
-        700px 310px 0 0 rgba(255, 255, 255, 0.8),
-        900px 290px 0 0 rgba(255, 255, 255, 0.8),
-        1100px 330px 0 0 rgba(255, 255, 255, 0.8),
-        1300px 270px 0 0 rgba(255, 255, 255, 0.8),
-        120px 450px 0 0 rgba(255, 255, 255, 0.8),
-        320px 490px 0 0 rgba(255, 255, 255, 0.8),
-        520px 470px 0 0 rgba(255, 255, 255, 0.8),
-        720px 510px 0 0 rgba(255, 255, 255, 0.8),
-        920px 490px 0 0 rgba(255, 255, 255, 0.8),
-        1120px 530px 0 0 rgba(255, 255, 255, 0.8),
-        1320px 470px 0 0 rgba(255, 255, 255, 0.8),
-        180px 650px 0 0 rgba(255, 255, 255, 0.8),
-        380px 690px 0 0 rgba(255, 255, 255, 0.8),
-        580px 670px 0 0 rgba(255, 255, 255, 0.8),
-        780px 710px 0 0 rgba(255, 255, 255, 0.8),
-        980px 690px 0 0 rgba(255, 255, 255, 0.8),
-        1180px 730px 0 0 rgba(255, 255, 255, 0.8);
-    animation: twinkleMedium 4s ease-in-out infinite;
-}
-
-@keyframes twinkleBig {
-    0%, 100% { 
-        opacity: 1;
-        transform: scale(1);
-    }
-    50% { 
-        opacity: 0.3;
-        transform: scale(0.8);
-    }
-}
-
-@keyframes twinkleMedium {
-    0%, 100% { 
-        opacity: 0.8;
-        transform: scale(1);
-    }
-    50% { 
-        opacity: 0.2;
-        transform: scale(0.7);
-    }
-}
-
-/* Small stars background */
+/* === Animated Stars Background === */
+.stars,
 .stars-small {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: 
-        radial-gradient(1px 1px at 20% 10%, white, transparent),
-        radial-gradient(1px 1px at 40% 20%, white, transparent),
-        radial-gradient(1px 1px at 60% 15%, white, transparent),
-        radial-gradient(1px 1px at 80% 25%, white, transparent),
-        radial-gradient(1px 1px at 15% 35%, white, transparent),
-        radial-gradient(1px 1px at 35% 45%, white, transparent),
-        radial-gradient(1px 1px at 55% 40%, white, transparent),
-        radial-gradient(1px 1px at 75% 50%, white, transparent),
-        radial-gradient(1px 1px at 90% 45%, white, transparent),
-        radial-gradient(1px 1px at 25% 60%, white, transparent),
-        radial-gradient(1px 1px at 45% 70%, white, transparent),
-        radial-gradient(1px 1px at 65% 65%, white, transparent),
-        radial-gradient(1px 1px at 85% 75%, white, transparent),
-        radial-gradient(1px 1px at 10% 80%, white, transparent),
-        radial-gradient(1px 1px at 30% 90%, white, transparent),
-        radial-gradient(1px 1px at 50% 85%, white, transparent),
-        radial-gradient(1px 1px at 70% 95%, white, transparent),
-        radial-gradient(1px 1px at 90% 90%, white, transparent);
-    background-size: 300% 300%;
-    opacity: 0.4;
-    animation: twinkleSmall 6s ease-in-out infinite;
-    pointer-events: none;
-    z-index: 0;
+  position: fixed;
+  width: 200%;
+  height: 200%;
+  background-repeat: repeat;
+  top: -50%;
+  left: -50%;
+  z-index: 0;
+  pointer-events: none;
 }
 
-@keyframes twinkleSmall {
-    0%, 100% { opacity: 0.4; }
-    50% { opacity: 0.7; }
+.stars {
+  background-image: 
+    radial-gradient(2px 2px at 20% 30%, white, transparent),
+    radial-gradient(2px 2px at 60% 70%, white, transparent),
+    radial-gradient(1px 1px at 50% 50%, white, transparent),
+    radial-gradient(1px 1px at 80% 10%, white, transparent),
+    radial-gradient(2px 2px at 90% 60%, white, transparent);
+  background-size: 200px 200px, 250px 250px, 150px 150px, 300px 300px, 180px 180px;
+  animation: twinkle 5s ease-in-out infinite, moveStars 200s linear infinite;
+  opacity: 0.5;
 }
 
-/* Container */
+.stars-small {
+  background-image: 
+    radial-gradient(1px 1px at 10% 20%, var(--star-glow), transparent),
+    radial-gradient(1px 1px at 70% 80%, var(--star-glow), transparent),
+    radial-gradient(1px 1px at 30% 60%, var(--star-glow), transparent);
+  background-size: 300px 300px, 350px 350px, 250px 250px;
+  animation: twinkle 7s ease-in-out infinite reverse, moveStars 300s linear infinite;
+  opacity: 0.3;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes moveStars {
+  from { transform: translate(0, 0); }
+  to { transform: translate(-50%, -50%); }
+}
+
+/* === Shooting Stars === */
+.shooting-star {
+  position: fixed;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 10px 2px white;
+  z-index: 1;
+  animation: shoot 3s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes shoot {
+  0% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-300px, 300px);
+    opacity: 0;
+  }
+}
+
+/* === Music Player (Tombol Bulat) === */
+.music-player {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 1000;
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid var(--glass-border);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.music-player:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(124, 58, 237, 0.4);
+  border-color: var(--accent-purple);
+}
+
+.music-icon {
+  width: 30px;
+  height: 30px;
+  color: var(--moon-yellow);
+  transition: transform 0.3s ease;
+}
+
+/* Aturan untuk ikon Play/Pause */
+.music-player .icon-pause {
+  display: none; /* Sembunyikan ikon pause by default */
+}
+.music-player .icon-play {
+  display: block; /* Tampilkan ikon play by default */
+}
+.music-player.playing .icon-pause {
+  display: block; /* Tampilkan ikon pause saat playing */
+}
+.music-player.playing .icon-play {
+  display: none; /* Sembunyikan ikon play saat playing */
+}
+
+/* Animasi pulse HANYA untuk ikon pause (saat playing) */
+.music-player.playing .icon-pause {
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.music-player .music-text,
+.music-player .playlist-toggle {
+  display: none;
+}
+
+/* === Playlist Dropdown === */
+.playlist-selector {
+  position: fixed;
+  bottom: 170px; /* Di atas advanced controls */
+  right: 30px;
+  z-index: 1000;
+  background: var(--card-bg);
+  backdrop-filter: blur(15px);
+  border-radius: 16px;
+  border: 2px solid var(--glass-border);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  padding: 16px;
+  min-width: 250px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.playlist-selector.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.playlist-selector h4 {
+  color: var(--moon-yellow);
+  font-size: 1rem;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.song-item {
+  padding: 10px 14px;
+  margin: 6px 0;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.song-item:hover {
+  background: rgba(124, 58, 237, 0.2);
+  border-color: var(--accent-purple);
+  transform: translateX(5px);
+}
+
+.song-item.active {
+  background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+  border-color: var(--accent-purple);
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
+}
+
+.song-item span {
+  font-size: 0.9rem;
+  color: var(--star-white);
+}
+
+.song-item.active span {
+  font-weight: 600;
+}
+
+.playlist-toggle {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.playlist-toggle:hover {
+  background: rgba(124, 58, 237, 0.3);
+  border-color: var(--accent-purple);
+}
+
+.playlist-toggle svg {
+  width: 20px;
+  height: 20px;
+  color: var(--star-white);
+}
+
+/* === Header Navigation === */
+.header-nav {
+  position: relative;
+  z-index: 100;
+  padding: 30px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(5px);
+}
+
+.header-nav h2 {
+  font-size: 1.8rem;
+  color: var(--moon-yellow);
+  text-shadow: 0 0 20px rgba(255, 217, 61, 0.5);
+  animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%, 100% { text-shadow: 0 0 20px rgba(255, 217, 61, 0.5); }
+  50% { text-shadow: 0 0 30px rgba(255, 217, 61, 0.8); }
+}
+
+/* [PERUBAHAN] Menyesuaikan nav-buttons untuk ikon */
+.nav-buttons {
+  display: flex;
+  gap: 15px;
+  align-items: center; /* Memastikan ikon sejajar */
+}
+
+/* === Buttons === */
+.btn {
+  display: inline-block;
+  padding: 12px 28px;
+  background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.5s;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(124, 58, 237, 0.5);
+}
+
+.btn.logout {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+}
+
+.btn.logout:hover {
+  box-shadow: 0 8px 25px rgba(239, 68, 68, 0.5);
+}
+
+.btn.cancel {
+  background: linear-gradient(135deg, #64748b, #475569);
+  box-shadow: 0 4px 15px rgba(100, 116, 139, 0.3);
+}
+
+/* [KODE BARU] Tombol Ikon */
+.btn-icon {
+  padding: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%; /* Membuatnya bulat */
+  display: inline-grid; /* Mengganti inline-block */
+  place-items: center; /* Memusatkan ikon */
+  font-size: 1.5rem; /* Memperbesar ikon (emoji) */
+  line-height: 1;
+  flex-shrink: 0; /* Mencegah tombol menyusut */
+}
+
+/* Tombol home bisa sedikit lebih besar */
+.btn-icon.btn-home {
+  font-size: 1.8rem;
+}
+
+
+/* === Container === */
 .container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px;
-    position: relative;
-    z-index: 10;
+  position: relative;
+  z-index: 10;
+  width: 90%;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  padding-bottom: 120px; /* Beri ruang agar tidak tertutup tombol musik */
 }
 
-/* Headers */
-h1, h2, h3 {
-    color: var(--star-glow);
-    text-shadow: 0 0 20px rgba(184, 212, 232, 0.3);
-    margin-bottom: 1rem;
-    position: relative;
-    z-index: 10;
-}
-
-h2 {
-    font-size: 1.8rem;
-    border-bottom: 2px solid var(--night-accent);
-    padding-bottom: 0.5rem;
-}
-
-/* Links */
-a {
-    color: var(--night-accent);
-    text-decoration: none;
-    transition: all 0.3s ease;
-    position: relative;
-    z-index: 10;
-}
-
-a:hover {
-    color: var(--star-glow);
-    text-shadow: 0 0 10px rgba(184, 212, 232, 0.5);
-}
-
-/* Forms */
+/* === Form Styles === */
 form {
-    background: rgba(26, 41, 71, 0.7);
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 
-        0 8px 32px rgba(0, 0, 0, 0.4),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(74, 111, 165, 0.2);
-    position: relative;
-    z-index: 10;
+  background: var(--card-bg);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  border: 2px solid var(--glass-border);
+  margin-bottom: 40px;
+  animation: fadeInUp 0.6s ease;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+form h2 {
+  text-align: center;
+  color: var(--moon-yellow);
+  margin-bottom: 30px;
+  font-size: 2rem;
+  text-shadow: 0 0 20px rgba(255, 217, 61, 0.3);
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--star-white);
+  font-size: 0.95rem;
 }
 
 input[type="text"],
 input[type="password"],
+textarea,
 input[type="file"] {
-    width: 100%;
-    padding: 12px 16px;
-    margin: 8px 0 16px;
-    background: var(--night-deep);
-    border: 1px solid var(--night-accent);
-    border-radius: 8px;
-    color: var(--star-white);
-    font-size: 1rem;
-    transition: all 0.3s ease;
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 12px;
+  border: 2px solid var(--glass-border);
+  outline: none;
+  margin-bottom: 24px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--star-white);
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.3s ease;
 }
 
 input[type="text"]:focus,
 input[type="password"]:focus,
-input[type="file"]:focus {
-    outline: none;
-    border-color: var(--star-glow);
-    box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.3);
+textarea:focus {
+  border-color: var(--accent-purple);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.2);
 }
 
-/* Buttons */
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+input[type="file"] {
+  padding: 12px;
+  cursor: pointer;
+}
+
+input::file-selector-button {
+  background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-right: 15px;
+}
+
+input::file-selector-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
+}
+
 button,
 input[type="submit"] {
-    background: var(--gradient-dark);
-    color: var(--star-white);
-    padding: 12px 28px;
-    border: 1px solid var(--night-accent);
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    position: relative;
-    z-index: 10;
+  width: 100%;
+  background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+  color: white;
+  border: none;
+  padding: 14px 24px;
+  border-radius: 12px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+  font-family: 'Poppins', sans-serif;
 }
 
 button:hover,
 input[type="submit"]:hover {
-    background: var(--night-accent);
-    box-shadow: 0 0 20px rgba(74, 111, 165, 0.5);
-    transform: translateY(-2px);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(124, 58, 237, 0.5);
 }
 
-button:active,
-input[type="submit"]:active {
-    transform: translateY(0);
+form a {
+  color: var(--accent-purple);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
 }
 
-/* Tables */
+form a:hover {
+  color: var(--moon-yellow);
+}
+
+/* === Cards Grid === */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.card {
+  background: var(--card-bg);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  border: 2px solid var(--glass-border);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: fadeInUp 0.6s ease;
+  position: relative;
+  /* Menyiapkan card-body untuk flexbox */
+  display: flex;
+  flex-direction: column;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-purple), var(--accent-pink), var(--moon-yellow));
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+
+.card:hover::before {
+  transform: scaleX(1);
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 50px rgba(124, 58, 237, 0.4);
+  border-color: var(--accent-purple);
+}
+
+.card img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.card:hover img {
+  transform: scale(1.1);
+}
+
+.card-body {
+  padding: 24px;
+  /* Menggunakan flexbox untuk mendorong tombol ke bawah */
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Memastikan card-body mengisi sisa ruang */
+  justify-content: space-between; /* Mendorong konten dan aksi menjauh */
+}
+
+.card-body h3 {
+  color: var(--moon-yellow);
+  margin-bottom: 12px;
+  font-size: 1.4rem;
+  text-shadow: 0 2px 10px rgba(255, 217, 61, 0.3);
+}
+
+.card-body p {
+  color: var(--star-white);
+  opacity: 0.9;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.date {
+  display: inline-block;
+  font-size: 0.85rem;
+  color: var(--star-glow);
+  background: rgba(107, 159, 255, 0.1);
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(107, 159, 255, 0.2);
+}
+
+/* CSS untuk tombol aksi di card */
+.card-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px; /* Jarak dari konten di atasnya */
+}
+
+.card-actions a {
+  display: inline-block;
+  padding: 9px 15px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-align: center;
+  flex: 1; /* Tombol akan berbagi ruang secara merata */
+  border: 2px solid transparent;
+}
+
+/* Tombol Edit */
+.card-actions .btn-edit {
+  background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+  color: white;
+}
+
+.card-actions .btn-edit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
+}
+
+/* === Table Styles === */
 table {
-    width: 100%;
-    border-collapse: collapse;
-    background: rgba(26, 41, 71, 0.7);
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(10px);
-    position: relative;
-    z-index: 10;
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card-bg);
+  backdrop-filter: blur(15px);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  margin-top: 20px;
 }
 
 th {
-    background: var(--night-blue);
-    color: var(--star-glow);
-    padding: 16px;
-    text-align: left;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 0.9rem;
+  background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+  color: white;
+  padding: 16px;
+  text-align: left;
+  font-weight: 600;
 }
 
 td {
-    padding: 14px 16px;
-    border-bottom: 1px solid rgba(74, 111, 165, 0.2);
-}
-
-tr:last-child td {
-    border-bottom: none;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--glass-border);
+  color: var(--text-light);
 }
 
 tr:hover {
-    background: rgba(74, 111, 165, 0.1);
+  background: rgba(124, 58, 237, 0.1);
 }
 
-/* Messages */
-p {
-    margin: 1rem 0;
-    position: relative;
-    z-index: 10;
+td a {
+  color: var(--accent-purple);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
 }
 
-p[style*="color:green"],
-.success {
-    color: #6dd5a5 !important;
-    background: rgba(109, 213, 165, 0.1);
-    padding: 12px 16px;
-    border-radius: 8px;
-    border-left: 4px solid #6dd5a5;
+td a:hover {
+  color: var(--moon-yellow);
 }
 
-p[style*="color:red"],
-.error {
-    color: #ff6b9d !important;
-    background: rgba(255, 107, 157, 0.1);
-    padding: 12px 16px;
-    border-radius: 8px;
-    border-left: 4px solid #ff6b9d;
+td button,
+.btn-delete { 
+  width: auto;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
 }
 
-/* HR */
-hr {
-    border: none;
-    height: 2px;
-    background: var(--gradient-dark);
-    margin: 2rem 0;
-    opacity: 0.5;
-    position: relative;
-    z-index: 10;
+td button:hover,
+.btn-delete:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
 }
 
-/* Responsive untuk mobile */
+/* === Responsive Design === */
 @media (max-width: 768px) {
-    body::before {
-        width: 80px;
-        height: 80px;
-        top: 5%;
-        right: 5%;
-    }
-    
-    body::after {
-        top: 6%;
-        right: 6%;
-        width: 10px;
-        height: 10px;
-    }
+  .header-nav {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+  
+  .cards {
+    grid-template-columns: 1fr;
+  }
+  
+  form {
+    padding: 30px 20px;
+  }
+  
+  .music-player {
+    bottom: 20px;
+    right: 20px;
+    width: 55px;
+    height: 55px;
+  }
+  
+  .playlist-selector {
+    right: 20px;
+    bottom: 155px; /* Disesuaikan untuk mobile */
+    min-width: 220px;
+  }
+
+  .advanced-controls {
+    right: 20px;
+    bottom: 85px; /* Disesuaikan untuk mobile */
+    padding: 8px;
+    gap: 5px;
+  }
+  
+  .advanced-controls .control-btn {
+    width: 35px;
+    height: 35px;
+  }
+
+  .volume-control input[type="range"] {
+    width: 60px; /* Volume slider lebih kecil di mobile */
+  }
+}
+
+/* === Loading Animation === */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+.floating {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* === Advanced Music Controls === */
+.advanced-controls {
+  position: fixed;
+  bottom: 100px; /* 30px (jarak) + 60px (tombol bulat) + 10px (jarak) */
+  right: 30px;
+  z-index: 999;
+  background: var(--card-bg);
+  backdrop-filter: blur(15px);
+  border-radius: 16px;
+  border: 2px solid var(--glass-border);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  
+  /* Sembunyikan secara default */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.advanced-controls.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.advanced-controls .control-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--glass-border);
+  color: var(--star-white);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  padding: 0; /* Pastikan tidak ada padding tambahan */
+}
+
+.advanced-controls .control-btn:hover {
+  background: var(--accent-purple);
+  border-color: var(--accent-purple);
+}
+
+.volume-control {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 5px;
+}
+
+.volume-control span {
+  font-size: 1.2rem;
+}
+
+.volume-control input[type="range"] {
+  width: 80px;
+  -webkit-appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+/* Chrome/Safari Track */
+.volume-control input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px;
+  background: var(--glass-border);
+  border-radius: 5px;
+}
+/* Firefox Track */
+.volume-control input[type="range"]::-moz-range-track {
+  height: 4px;
+  background: var(--glass-border);
+  border-radius: 5px;
+}
+/* Chrome/Safari Thumb */
+.volume-control input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--moon-yellow);
+  margin-top: -5px; /* Center it */
+}
+/* Firefox Thumb */
+.volume-control input[type="range"]::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--moon-yellow);
+  border: none;
 }

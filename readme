@@ -1,0 +1,68 @@
+# 📓 DiaryBook
+
+Ini adalah aplikasi buku harian/jurnal pribadi sederhana berbasis web. Didesain dengan tema *night-sky* yang menenangkan, aplikasi ini memungkinkan pengguna untuk mendaftar, login, menulis catatan, mengunggah gambar, dan mendengarkan musik dalam satu antarmuka yang aman dan personal.
+
+---
+
+## ✨ Fitur Utama
+
+* **Autentikasi Pengguna:** Sistem registrasi (`register.php`) dan login (`login.php`) yang aman menggunakan *password hashing* (PASSWORD_DEFAULT).
+* **Manajemen Catatan (CRUD):**
+    * **Create:** Menulis catatan baru dengan judul, isi, dan gambar opsional (`tambah.php`).
+    * **Read:** Menampilkan semua catatan milik pengguna dalam format kartu yang responsif di halaman utama (`index.php`).
+    * **Update:** Mengedit judul, isi, dan gambar dari catatan yang sudah ada (`edit.php`).
+    * **Delete:** Menghapus catatan/file dari database dan server (`delete_file.php`).
+* **Manajemen File:** Halaman khusus untuk mengunggah file gambar ke akun pengguna (`upload.php`).
+* **Pemutar Musik Dinamis:**
+    * **Playlist Dinamis:** Membaca dan memutar file `.mp3` secara otomatis dari folder `assets/songs/`.
+    * **Manajemen Lagu:** Halaman khusus (`manage_songs.php`) untuk mengunggah dan menghapus file `.mp3` dari playlist.
+    * **Kontrol Lanjutan:** Tombol pemutar musik bulat di kanan bawah.
+        * **Klik Kiri:** Play / Pause (dengan indikator ikon yang berubah).
+        * **Klik Kanan:** Membuka panel kontrol untuk Volume, Lagu Berikutnya, Lagu Sebelumnya, dan tombol Playlist.
+* **Desain & UI:**
+    * Tema "Night Sky" dengan latar belakang bintang animasi.
+    * Desain *Glassmorphism* (semi-transparan) pada kartu dan formulir.
+    * Navigasi berbasis ikon yang bersih dengan *tooltips* untuk kemudahan penggunaan.
+
+---
+
+## 🛠️ Teknologi yang Digunakan
+
+* **Backend:** PHP
+* **Frontend:** HTML5, CSS3, JavaScript (ES6+)
+* **Database:** MySQL / MariaDB (dengan driver `mysqli`)
+
+---
+
+## 🚀 Instalasi dan Pengaturan
+
+Untuk menjalankan proyek ini di lingkungan lokal Anda (misalnya menggunakan XAMPP atau Laragon):
+
+1.  **Clone atau Unduh Repositori**
+    Salin semua file proyek ke dalam folder server web Anda (misalnya `htdocs/diarybook` atau `www/diarybook`).
+
+2.  **Buat Database**
+    * Buka phpMyAdmin (atau *tool* database Anda).
+    * Buat database baru dengan nama `diarybook`.
+
+3.  **Impor Database**
+    * Pilih database `diarybook` yang baru saja Anda buat.
+    * Buka tab "Import".
+    * Unggah dan jalankan file `diarybook.sql` yang ada di repositori ini. Ini akan membuat tabel `users` dan `files` yang diperlukan.
+
+4.  **Konfigurasi Koneksi**
+    * Buka file `config/connect.php`.
+    * Sesuaikan nilai `$host`, `$dbname`, `$username`, dan `$password` agar sesuai dengan pengaturan database lokal Anda. (Defaultnya adalah 'localhost', 'diarybook', 'root', '').
+
+5.  **Buat Folder yang Diperlukan**
+    Pastikan Anda membuat dua folder ini di *root* proyek Anda agar aplikasi berfungsi dengan benar:
+    * `/uploads/` (Untuk menyimpan gambar catatan yang diunggah).
+    * `/assets/songs/` (Untuk menyimpan file `.mp3` yang diunggah).
+
+    > **Penting:** Pastikan kedua folder ini memiliki izin tulis (writable) agar PHP dapat menyimpan file di dalamnya.
+
+6.  **Jalankan Aplikasi**
+    * Buka browser Anda dan akses `http://localhost/diarybook/` (atau path yang sesuai).
+    * Daftarkan akun baru dan Anda siap menggunakannya!
+
+---

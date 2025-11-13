@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 06, 2025 at 04:26 PM
+-- Generation Time: Nov 13, 2025 at 05:04 AM
 -- Server version: 8.0.40
 -- PHP Version: 7.3.33
 
@@ -31,16 +31,19 @@ CREATE TABLE `files` (
   `id` int NOT NULL,
   `user_id` int DEFAULT NULL,
   `filename` varchar(255) DEFAULT NULL,
-  `uploaded_at` datetime DEFAULT CURRENT_TIMESTAMP
+  `original_filename` varchar(255) DEFAULT NULL,
+  `uploaded_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `title` varchar(255) DEFAULT NULL,
+  `content` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `files`
 --
 
-INSERT INTO `files` (`id`, `user_id`, `filename`, `uploaded_at`) VALUES
-(1, 1, 'pxfuel.jpg', '2025-11-06 23:12:41'),
-(2, 1, 'foto 6.jpg', '2025-11-06 23:15:35');
+INSERT INTO `files` (`id`, `user_id`, `filename`, `original_filename`, `uploaded_at`, `title`, `content`) VALUES
+(1, 1, 'pxfuel.jpg', NULL, '2025-11-06 23:12:41', NULL, NULL),
+(2, 1, 'foto 6.jpg', NULL, '2025-11-06 23:15:35', 'halo', 'ini buku');
 
 -- --------------------------------------------------------
 
