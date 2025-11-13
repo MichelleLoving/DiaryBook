@@ -98,21 +98,21 @@ body {
   }
 }
 
-/* === Music Player (Enhanced with Playlist) === */
+/* === Music Player (Tombol Bulat) === */
 .music-player {
   position: fixed;
-  top: 20px;
-  right: 20px;
+  bottom: 30px;
+  right: 30px;
   z-index: 1000;
   background: var(--card-bg);
   backdrop-filter: blur(10px);
-  padding: 12px 20px;
-  border-radius: 50px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
   border: 2px solid var(--glass-border);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  display: flex;
-  align-items: center;
-  gap: 12px;
+  display: grid;
+  place-items: center;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -124,13 +124,28 @@ body {
 }
 
 .music-icon {
-  width: 24px;
-  height: 24px;
+  width: 30px;
+  height: 30px;
   color: var(--moon-yellow);
   transition: transform 0.3s ease;
 }
 
-.music-player.playing .music-icon {
+/* Aturan untuk ikon Play/Pause */
+.music-player .icon-pause {
+  display: none; /* Sembunyikan ikon pause by default */
+}
+.music-player .icon-play {
+  display: block; /* Tampilkan ikon play by default */
+}
+.music-player.playing .icon-pause {
+  display: block; /* Tampilkan ikon pause saat playing */
+}
+.music-player.playing .icon-play {
+  display: none; /* Sembunyikan ikon play saat playing */
+}
+
+/* Animasi pulse HANYA untuk ikon pause (saat playing) */
+.music-player.playing .icon-pause {
   animation: pulse 1s ease-in-out infinite;
 }
 
@@ -139,17 +154,16 @@ body {
   50% { transform: scale(1.1); }
 }
 
-.music-text {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--star-white);
+.music-player .music-text,
+.music-player .playlist-toggle {
+  display: none;
 }
 
 /* === Playlist Dropdown === */
 .playlist-selector {
   position: fixed;
-  top: 80px;
-  right: 20px;
+  bottom: 170px; /* Di atas advanced controls */
+  right: 30px;
   z-index: 1000;
   background: var(--card-bg);
   backdrop-filter: blur(15px);
@@ -160,7 +174,7 @@ body {
   min-width: 250px;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-10px);
+  transform: translateY(10px);
   transition: all 0.3s ease;
 }
 
@@ -257,9 +271,11 @@ body {
   50% { text-shadow: 0 0 30px rgba(255, 217, 61, 0.8); }
 }
 
+/* [PERUBAHAN] Menyesuaikan nav-buttons untuk ikon */
 .nav-buttons {
   display: flex;
   gap: 15px;
+  align-items: center; /* Memastikan ikon sejajar */
 }
 
 /* === Buttons === */
@@ -313,6 +329,25 @@ body {
   box-shadow: 0 4px 15px rgba(100, 116, 139, 0.3);
 }
 
+/* [KODE BARU] Tombol Ikon */
+.btn-icon {
+  padding: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%; /* Membuatnya bulat */
+  display: inline-grid; /* Mengganti inline-block */
+  place-items: center; /* Memusatkan ikon */
+  font-size: 1.5rem; /* Memperbesar ikon (emoji) */
+  line-height: 1;
+  flex-shrink: 0; /* Mencegah tombol menyusut */
+}
+
+/* Tombol home bisa sedikit lebih besar */
+.btn-icon.btn-home {
+  font-size: 1.8rem;
+}
+
+
 /* === Container === */
 .container {
   position: relative;
@@ -321,6 +356,7 @@ body {
   max-width: 1200px;
   margin: 40px auto;
   padding: 20px;
+  padding-bottom: 120px; /* Beri ruang agar tidak tertutup tombol musik */
 }
 
 /* === Form Styles === */
@@ -468,6 +504,9 @@ form a:hover {
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   animation: fadeInUp 0.6s ease;
   position: relative;
+  /* Menyiapkan card-body untuk flexbox */
+  display: flex;
+  flex-direction: column;
 }
 
 .card::before {
@@ -505,6 +544,11 @@ form a:hover {
 
 .card-body {
   padding: 24px;
+  /* Menggunakan flexbox untuk mendorong tombol ke bawah */
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Memastikan card-body mengisi sisa ruang */
+  justify-content: space-between; /* Mendorong konten dan aksi menjauh */
 }
 
 .card-body h3 {
@@ -530,6 +574,37 @@ form a:hover {
   padding: 6px 12px;
   border-radius: 20px;
   border: 1px solid rgba(107, 159, 255, 0.2);
+}
+
+/* CSS untuk tombol aksi di card */
+.card-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px; /* Jarak dari konten di atasnya */
+}
+
+.card-actions a {
+  display: inline-block;
+  padding: 9px 15px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-align: center;
+  flex: 1; /* Tombol akan berbagi ruang secara merata */
+  border: 2px solid transparent;
+}
+
+/* Tombol Edit */
+.card-actions .btn-edit {
+  background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+  color: white;
+}
+
+.card-actions .btn-edit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
 }
 
 /* === Table Styles === */
@@ -573,11 +648,28 @@ td a:hover {
   color: var(--moon-yellow);
 }
 
-td button {
+td button,
+.btn-delete { 
   width: auto;
   padding: 8px 16px;
   font-size: 0.9rem;
   background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+td button:hover,
+.btn-delete:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
 }
 
 /* === Responsive Design === */
@@ -597,15 +689,32 @@ td button {
   }
   
   .music-player {
-    top: 10px;
-    right: 10px;
-    padding: 10px 16px;
+    bottom: 20px;
+    right: 20px;
+    width: 55px;
+    height: 55px;
   }
   
   .playlist-selector {
-    right: 10px;
-    top: 70px;
-    min-width: 200px;
+    right: 20px;
+    bottom: 155px; /* Disesuaikan untuk mobile */
+    min-width: 220px;
+  }
+
+  .advanced-controls {
+    right: 20px;
+    bottom: 85px; /* Disesuaikan untuk mobile */
+    padding: 8px;
+    gap: 5px;
+  }
+  
+  .advanced-controls .control-btn {
+    width: 35px;
+    height: 35px;
+  }
+
+  .volume-control input[type="range"] {
+    width: 60px; /* Volume slider lebih kecil di mobile */
   }
 }
 
@@ -617,4 +726,101 @@ td button {
 
 .floating {
   animation: float 3s ease-in-out infinite;
+}
+
+/* === Advanced Music Controls === */
+.advanced-controls {
+  position: fixed;
+  bottom: 100px; /* 30px (jarak) + 60px (tombol bulat) + 10px (jarak) */
+  right: 30px;
+  z-index: 999;
+  background: var(--card-bg);
+  backdrop-filter: blur(15px);
+  border-radius: 16px;
+  border: 2px solid var(--glass-border);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  
+  /* Sembunyikan secara default */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.advanced-controls.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.advanced-controls .control-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--glass-border);
+  color: var(--star-white);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  padding: 0; /* Pastikan tidak ada padding tambahan */
+}
+
+.advanced-controls .control-btn:hover {
+  background: var(--accent-purple);
+  border-color: var(--accent-purple);
+}
+
+.volume-control {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 5px;
+}
+
+.volume-control span {
+  font-size: 1.2rem;
+}
+
+.volume-control input[type="range"] {
+  width: 80px;
+  -webkit-appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+/* Chrome/Safari Track */
+.volume-control input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px;
+  background: var(--glass-border);
+  border-radius: 5px;
+}
+/* Firefox Track */
+.volume-control input[type="range"]::-moz-range-track {
+  height: 4px;
+  background: var(--glass-border);
+  border-radius: 5px;
+}
+/* Chrome/Safari Thumb */
+.volume-control input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--moon-yellow);
+  margin-top: -5px; /* Center it */
+}
+/* Firefox Thumb */
+.volume-control input[type="range"]::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--moon-yellow);
+  border: none;
 }
